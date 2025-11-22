@@ -1,0 +1,16 @@
+C:\Users\Hp\source\repos\EventPlayground\bin\Debug\net9.0-windows\EventPlayground.exe
+C:\Users\Hp\source\repos\EventPlayground\bin\Debug\net9.0-windows\EventPlayground.deps.json
+C:\Users\Hp\source\repos\EventPlayground\bin\Debug\net9.0-windows\EventPlayground.runtimeconfig.json
+C:\Users\Hp\source\repos\EventPlayground\bin\Debug\net9.0-windows\EventPlayground.dll
+C:\Users\Hp\source\repos\EventPlayground\bin\Debug\net9.0-windows\EventPlayground.pdb
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.Form1.resources
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.csproj.GenerateResource.cache
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.AssemblyInfoInputs.cache
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.AssemblyInfo.cs
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.dll
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\refint\EventPlayground.dll
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.pdb
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\EventPlayground.genruntimeconfig.cache
+C:\Users\Hp\source\repos\EventPlayground\obj\Debug\net9.0-windows\ref\EventPlayground.dll

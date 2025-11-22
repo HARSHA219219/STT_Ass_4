@@ -1,0 +1,121 @@
+using System;
+using System.Windows.Forms;
+
+namespace Order_Pipeline
+{
+    public partial class Form1 : Form
+    {
+        // Custom EventArgs class
+        public class ShipEventArgs : EventArgs
+        {
+            public string Product { get; }
+            public bool Express { get; }
+
+            public ShipEventArgs(string product, bool express)
+                => (Product, Express) = (product, express);
+        }
+
+        // Define events
+        public event EventHandler<ShipEventArgs> OrderCreated;
+        public event EventHandler OrderRejected;
+        public event EventHandler OrderConfirmed;
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            // Fill combo box (in case not done in designer)
+            if (cmbProduct.Items.Count == 0)
+                cmbProduct.Items.AddRange(new string[] { "Laptop", "Mouse", "Keyboard" });
+
+            // Subscribe to events
+            OrderCreated += ValidateOrder;
+            OrderCreated += DisplayOrderInfo;
+            OrderRejected += ShowRejection;
+            OrderConfirmed += ShowConfirmation;
+        }
+
+        // Trigger when button is clicked
+        private void btnProcessOrder_Click(object sender, EventArgs e)
+        {
+            string customer = txtCustomer.Text.Trim();
+            string product = cmbProduct.SelectedItem?.ToString();
+            int quantity = (int)numQuantity.Value;
+
+            if (string.IsNullOrWhiteSpace(customer))
+            {
+                lblStatus.Text = "Please enter your name first!";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            if (cmbProduct.SelectedItem == null)
+            {
+                lblStatus.Text = "Please select a product.";
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            bool express = quantity > 5; // Just a sample rule
+            OrderCreated?.Invoke(this, new ShipEventArgs(product, express));
+        }
+
+        // Validates the order
+        private void ValidateOrder(object sender, ShipEventArgs e)
+        {
+            int quantity = (int)numQuantity.Value;
+
+            if (quantity <= 0)
+            {
+                lblStatus.Text = "Order Invalid – Quantity must be > 0";
+                lblStatus.ForeColor = SystemColors.ButtonHighlight;
+                OrderRejected?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            lblStatus.Text = "Order Validated – Processing...";
+            lblStatus.ForeColor = SystemColors.ButtonHighlight;
+            OrderConfirmed?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Shows summary info
+        private void DisplayOrderInfo(object sender, ShipEventArgs e)
+        {
+            string customer = txtCustomer.Text;
+            int quantity = (int)numQuantity.Value;
+
+            MessageBox.Show(
+                $"Customer: {customer}\nProduct: {e.Product}\nQuantity: {quantity}\nExpress Shipping: {e.Express}",
+                "Order Summary",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+
+        // Rejection event handler
+        private void ShowRejection(object sender, EventArgs e)
+        {
+            lblStatus.Text = " Order Invalid – Please retry.";
+            lblStatus.ForeColor = SystemColors.ButtonHighlight;
+        }
+
+        // Confirmation event handler
+        private void ShowConfirmation(object sender, EventArgs e)
+        {
+            lblStatus.Text = $" Order Processed Successfully for {txtCustomer.Text}";
+            lblStatus.ForeColor = SystemColors.ButtonHighlight; 
+        }
+
+        // This runs automatically when the form first opens
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Set a default product selection (avoids null warning)
+            if (cmbProduct.Items.Count > 0)
+                cmbProduct.SelectedIndex = 0;
+
+            // Clear the status label when form loads
+            lblStatus.Text = "";
+        }
+
+    }
+}
